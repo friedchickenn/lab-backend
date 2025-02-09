@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Post,Param,Put, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post,Param,Put, Res, UseGuards, UseInterceptors, UploadedFile, BadRequestException, Query } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { AppService } from './app.service';
-import { ApiBearerAuth, ApiBody } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes } from '@nestjs/swagger';
 import {CreateMahasiswaDTO } from './dto/create-Mahasiswa.dto';
 import { UpdateMahasiswaDTO } from './dto/update-mahasiswa.dto';
 import { RegisterUserDTO } from './dto/register-user.dto';
@@ -14,6 +15,37 @@ import { User } from './entity/user.entity';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
+  @Get('mahasiswa/search')
+  async cariMahasiswa(@Query('nama') nama: string) {
+    return this.appService.cariMahasiswa({ nama });
+  }
+
+  @Post('mahasiswa/:nim/upload')
+  @ApiConsumes("multipart/form-data")
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadMahasiswaFoto(@UploadedFile() file: Express.Multer.File, @Param('nim') nim: string) {
+    if (!file) throw new BadRequestException('File tidak boleh kosong');
+    return this.appService.uploadMahasiswaFoto(file, nim);
+  }
+
+  @Get('mahasiswa/:nim/foto')
+  async getMahasiswaFoto(@Param('nim') nim: string, @Res() res: Response) {
+    const filename = await this.appService.getMahasiwaFoto(nim);
+    return res.sendFile(filename, { root: 'uploads' });
+  }
+
 
 
   @Post("Mahasiswa")
