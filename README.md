@@ -11,3 +11,5 @@ Untuk menjalankan aplikasi ini, ikuti langkah-langkah berikut:
 1. Clone repositori ini:
    ```bash
    git clone https://github.com/username/repository-name.git
+```bash
+Client -> POST /profile/upload -> ProfileController -> ProfileService -> Database
