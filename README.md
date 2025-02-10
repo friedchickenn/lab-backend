@@ -39,3 +39,15 @@ Untuk menjalankan aplikasi ini, ikuti langkah-langkah berikut:
    ```bash
    npm run start:dev
 Aplikasi akan berjalan pada http://localhost:3000.
+
+```mermaid
+flowchart TD
+    A[Client] --> B[POST /mahasiswa]
+    B --> C[MahasiswaController]
+    C --> D[MahasiswaService]
+    D --> E[Database]
+
+    F[Client] --> G[GET /mahasiswa]
+    G --> C
+    C --> D
+    D --> E
