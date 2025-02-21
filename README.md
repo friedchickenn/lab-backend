@@ -5,58 +5,23 @@
 Repositori ini merupakan aplikasi backend yang dibangun menggunakan framework NestJS. Aplikasi ini memiliki beberapa fitur utama, yaitu manajemen data mahasiswa, autentikasi, manajemen profil, dan chat real-time menggunakan WebSocket. Struktur repositori ini diorganisir berdasarkan fitur-fitur yang ada, dengan setiap fitur memiliki modul, controller, dan service tersendiri.
 
 ### Struktur Direktori:
-📦latihan-nest/
-├── 📂node_modules/
-├── 📂prisma/
-│   ├── prisma.schema
-├── 📂public/
-│   ├── 🟨app.js
-│   ├── 🟧index.html
-│   ├── 🟦styles.css
-├── 📂src/
-│   ├── 📂chat/
-│   |   |-- chat.gateaway.spec.ts
-│   |   |-- chat.gateaway.ts
-│   |   |-- chat.module.ts
-│   |   |-- chat.service.spec.ts
-│   |   |-- chat.service.ts
-│   ├── 📂dto/
-│   |   |-- create-mahasiswa.dto.ts
-│   |   |-- register-user.dto.ts
-│   ├── 📂entity/
-│   |   |-- user.entity.ts
-│   ├── 📂mahasiswa-profile/
-│   |   |-- mahasiswa-profile.controller.spec.ts
-│   |   |-- mahasiswa-profile.controller.ts
-│   |   |-- mahasiswa-profile.module.ts
-│   |   |-- mahasiswa-profile.service.spec.ts
-│   |   |-- mahasiswa-profile.service.ts
-│   ├── 📂profile/
-│   |   |-- profile.controller.spec.ts
-│   |   |-- profile.controller.ts
-│   |   |-- profile.module.ts
-│   |   |-- profile.service.spec.ts
-│   |   |-- profile.service.ts
-│   |-- app.controller.spec.ts
-│   |-- app.controller.ts
-│   |-- app.module.ts
-│   |-- app.service.ts
-│   |-- auth.guard.ts
-│   |-- auth.module.ts
-│   |-- 🟦main.ts
-│   |-- 🟦prisma.ts
-│   |-- 🟦user.decorator.ts
-├── 📂test/
-├── 📂uploads/
-├── .env
-├── .gitignore
-├── .prettierrc
-├── nest-cli.json
-├── package-lock.json 
-├── package.json 
-├── README.md 
-├── tsconfig.build.json 
-├── tsconfig.json 
+- *src/main.ts*: File entry point aplikasi NestJS.
+- *src/app.module.ts*: Modul utama aplikasi.
+- *src/app.controller.ts*: Controller utama aplikasi.
+- *src/app.service.ts*: Service utama aplikasi.
+- *src/mahasiswa/*: Folder untuk fitur mahasiswa.
+  - mahasiswa.controller.ts: Controller untuk fitur mahasiswa.
+  - mahasiswa.service.ts: Service untuk fitur mahasiswa.
+- *src/auth/*: Folder untuk fitur autentikasi.
+  - auth.controller.ts: Controller untuk fitur autentikasi.
+  - auth.service.ts: Service untuk fitur autentikasi.
+- *src/profile/*: Folder untuk fitur profil.
+  - profile.controller.ts: Controller untuk fitur profil.
+  - profile.service.ts: Service untuk fitur profil.
+- *src/chat/*: Folder untuk fitur chat.
+  - chat.gateway.ts: Gateway untuk fitur chat menggunakan WebSocket.
+- *src/prisma.ts*: File konfigurasi Prisma untuk menghubungkan ke database.
+- *prisma/schema.prisma*: Skema Prisma untuk mendefinisikan model dan hubungan database.
   
 ## 2. Cara Menjalankan Aplikasi
 
