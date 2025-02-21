@@ -5,6 +5,7 @@
 Repositori ini merupakan aplikasi backend yang dibangun menggunakan framework NestJS. Aplikasi ini memiliki beberapa fitur utama, yaitu manajemen data mahasiswa, autentikasi, manajemen profil, dan chat real-time menggunakan WebSocket. Struktur repositori ini diorganisir berdasarkan fitur-fitur yang ada, dengan setiap fitur memiliki modul, controller, dan service tersendiri.
 
 ### Struktur Direktori:
+```
 📦 latihan-nest/
 ├── 📂node_modules/         # Direktori dependensi Node.js
 ├── 📂prisma/               # Konfigurasi Prisma ORM
@@ -57,6 +58,7 @@ Repositori ini merupakan aplikasi backend yang dibangun menggunakan framework Ne
 ├── README.md              # Dokumentasi proyek
 ├── tsconfig.build.json    # Konfigurasi TypeScript untuk build
 ├── tsconfig.json          # Konfigurasi utama TypeScript
+```
 ## 2. Cara Menjalankan Aplikasi
 
 Untuk menjalankan aplikasi ini, ikuti langkah-langkah berikut:
