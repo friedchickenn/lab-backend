@@ -77,7 +77,7 @@ Untuk menjalankan aplikasi ini, ikuti langkah-langkah berikut:
 Aplikasi akan berjalan pada http://localhost:3000.
 
 ## 3. Penjelasan POST dan GET Mahasiswa
-1. POST Mahasiswa
+1. **POST Mahasiswa**
 **Endpoint**: /mahasiswa
 **Method**: POST
 **Fungsi**: Untuk menambahkan data mahasiswa baru ke dalam database.
@@ -86,7 +86,7 @@ Aplikasi akan berjalan pada http://localhost:3000.
 - Server menerima request dan memvalidasi data menggunakan DTO (create-mahasiswa.dto.ts).
 - Jika valid, data mahasiswa akan disimpan ke dalam database menggunakan Prisma ORM.
 - Server mengembalikan response berupa data mahasiswa yang baru saja dibuat beserta status code 201 Created.
-2. GET Mahasiswa
+2. **GET Mahasiswa**
 **Endpoint**: /mahasiswa 
 **Method**: GET
 **Fungsi**: Untuk mengambil data mahasiswa, baik semua data mahasiswa atau data mahasiswa tertentu berdasarkan ID.
@@ -117,48 +117,144 @@ sequenceDiagram
     Server-->>Client: Response 200 OK dengan data mahasiswa
 ```
 ## 4. Penjelasan GET, PUT, DELETE Mahasiswa by NIM
-- **GET /mahasiswa/:nim**: Endpoint ini digunakan untuk mengambil data mahasiswa berdasarkan NIM. NIM dikirim sebagai parameter dalam URL, dan data yang sesuai akan dicari di database.
-- **PUT /mahasiswa/:nim**: Endpoint ini digunakan untuk mengupdate data mahasiswa berdasarkan NIM. Data baru dikirim oleh client, dan data lama akan diupdate di database.
-- **DELETE /mahasiswa/:nim**: Endpoint ini digunakan untuk menghapus data mahasiswa berdasarkan NIM. Data yang sesuai dengan NIM akan dihapus dari database.
-**Diagram Alur**:
+1. **GET Mahasiswa by NIM**
+**Endpoint**: /mahasiswa/:nim
+**Method**: GET
+**Fungsi**: Untuk mengambil data mahasiswa tertentu berdasarkan NIM (Nomor Induk Mahasiswa).
+**Proses**:
+- Client mengirimkan request GET ke endpoint /mahasiswa/:nim dengan menyertakan NIM mahasiswa yang ingin diambil datanya.
+- Server menerima request dan memprosesnya.
+- Server mencari data mahasiswa di database berdasarkan NIM yang diberikan.
+- Jika data ditemukan, server mengembalikan response berupa data mahasiswa tersebut dengan status code 200 OK.
+- Jika data tidak ditemukan, server mengembalikan response dengan status code 404 Not Found.
+2. **PUT Mahasiswa by NIM**
+**Endpoint**: /mahasiswa/:nim
+**Method**: PUT
+**Fungsi**: Untuk memperbarui data mahasiswa tertentu berdasarkan NIM.
+**Proses**:
+- Client mengirimkan request PUT ke endpoint /mahasiswa/:nim dengan menyertakan NIM mahasiswa yang ingin diperbarui dan payload berupa data baru (misalnya: nama, jenis kelamin, jurusan).
+- Server menerima request dan memvalidasi data menggunakan DTO (update-mahasiswa.dto.ts).
+- Jika valid, server mencari data mahasiswa di database berdasarkan NIM yang diberikan.
+- Jika data ditemukan, server memperbarui data mahasiswa tersebut dengan data baru.
+- Server mengembalikan response berupa data mahasiswa yang telah diperbarui dengan status code 200 OK.
+- Jika data tidak ditemukan, server mengembalikan response dengan status code 404 Not Found.
+3. **DELETE Mahasiswa by NIM**
+**Endpoint**: /mahasiswa/:nim
+**Method**: DELETE
+**Fungsi**: Untuk menghapus data mahasiswa tertentu berdasarkan NIM.
+**Proses**:
+- Client mengirimkan request DELETE ke endpoint /mahasiswa/:nim dengan menyertakan NIM mahasiswa yang ingin dihapus.
+- Server menerima request dan memprosesnya.
+- Server mencari data mahasiswa di database berdasarkan NIM yang diberikan.
+- Jika data ditemukan, server menghapus data mahasiswa tersebut dari database.
+- Server mengembalikan response dengan status code 204 No Content (atau 200 OK dengan pesan sukses).
+- Jika data tidak ditemukan, server mengembalikan response dengan status code 404 Not Found.
+**Diagram Alur GET, PUT, DELETE Mahasiswa by NIM**
+Berikut adalah diagram alur untuk proses GET, PUT, DELETE Mahasiswa by NIM
 ```mermaid
-flowchart TD
-    A[Client] --> B[GET /mahasiswa/:nim]
-    B --> C[MahasiswaController]
-    C --> D[MahasiswaService]
-    D --> E[Database]
+sequenceDiagram
+    participant Client
+    participant Server
+    participant Database
 
-    F[Client] --> G[PUT /mahasiswa/:nim]
-    G --> C
-    C --> D
-    D --> E
+    Client->>Server: GET /mahasiswa/:nim
+    Server->>Database: Cari data mahasiswa berdasarkan NIM
+    Database-->>Server: Data mahasiswa
+    alt Data ditemukan
+        Server-->>Client: Response 200 OK dengan data mahasiswa
+    else Data tidak ditemukan
+        Server-->>Client: Response 404 Not Found
+    end
 
-    H[Client] --> I[DELETE /mahasiswa/:nim]
-    I --> C
-    C --> D
-    D --> E
+    Client->>Server: PUT /mahasiswa/:nim
+    Server->>Server: Validasi data menggunakan update-mahasiswa.dto.ts
+    Server->>Database: Cari data mahasiswa berdasarkan NIM
+    alt Data ditemukan
+        Server->>Database: Perbarui data mahasiswa
+        Database-->>Server: Data mahasiswa diperbarui
+        Server-->>Client: Response 200 OK dengan data mahasiswa
+    else Data tidak ditemukan
+        Server-->>Client: Response 404 Not Found
+    end
+
+    Client->>Server: DELETE /mahasiswa/:nim
+    Server->>Database: Cari data mahasiswa berdasarkan NIM
+    alt Data ditemukan
+        Server->>Database: Hapus data mahasiswa
+        Database-->>Server: Data mahasiswa dihapus
+        Server-->>Client: Response 204 No Content
+    else Data tidak ditemukan
+        Server-->>Client: Response 404 Not Found
+    end
 ```
 ## 5. Penjelasan GET Auth, POST Register, dan POST Login
-- **GET /auth**: Endpoint ini digunakan untuk mendapatkan informasi autentikasi, seperti status login atau token.
-- **POST /auth/register**: Endpoint ini digunakan untuk mendaftarkan user baru. Data registrasi (seperti username dan password) akan disimpan di database.
-- **POST /auth/login**: Endpoint ini digunakan untuk proses login. Client mengirimkan username dan password, dan sistem akan memverifikasi data tersebut sebelum memberikan akses.
-**Diagram Alur**:
+1. **GET Auth**
+**Endpoint**: /auth
+**Method**: GET
+**Fungsi**:Untuk memverifikasi status autentikasi pengguna (misalnya, mengecek apakah pengguna sudah login atau belum).
+**Proses**:
+- Client mengirimkan request GET ke endpoint /auth dengan menyertakan token autentikasi (biasanya di header Authorization).
+- Server menerima request dan memverifikasi token autentikasi menggunakan auth.guard.ts.
+- Jika token valid, server mengembalikan response berupa informasi pengguna yang terautentikasi dengan status code 200 OK.
+- Jika token tidak valid atau tidak ada, server mengembalikan response dengan status code 401 Unauthorized.
+2. **POST Register**
+**Endpoint**: /auth/register
+**Method**: POST
+**Fungsi**: Untuk mendaftarkan pengguna baru ke dalam sistem.
+**Proses**:
+- Client mengirimkan request POST ke endpoint /auth/register dengan payload berupa data registrasi (misalnya: nama, email, password) yang sesuai dengan DTO (register-user.dto.ts).
+- Server menerima request dan memvalidasi data menggunakan DTO.
+- Jika valid, server memeriksa apakah email atau username sudah terdaftar di database.
+- Jika belum terdaftar, server membuat entitas pengguna baru dan menyimpannya ke database menggunakan Prisma ORM.
+- Server mengembalikan response berupa data pengguna yang baru saja dibuat beserta status code 201 Created.
+- Jika username sudah terdaftar, server mengembalikan response dengan status code 400 Bad Request.
+3. **POST Login**
+**Endpoint**: /auth/login
+**Method**: POST
+**Fungsi**: ntuk mengautentikasi pengguna dan memberikan token akses (access token).
+**Proses**:
+- Client mengirimkan request POST ke endpoint /auth/login dengan payload berupa data login (misalnya: email/username dan password) yang sesuai dengan DTO (login-user.dto.ts).
+- Server menerima request dan memvalidasi data menggunakan DTO.
+- Jika valid, server mencari pengguna di database berdasarkan email atau username.
+- Jika pengguna ditemukan, server memverifikasi password yang diberikan dengan password yang tersimpan di database (biasanya menggunakan hashing seperti bcrypt).
+- Jika password valid, server membuat token akses (misalnya, JWT) dan mengembalikan response berupa token tersebut dengan status code 200 OK.
+- Jika pengguna tidak ditemukan atau password tidak valid, server mengembalikan response dengan status code 401 Unauthorized.
+**Diagram Alur GET Auth, POST Register, dan POST Login**
+Berikut adalah diagram alur untuk proses GET Auth, POST Register, dan POST Login
 ```mermaid
-flowchart TD
-    A[Client] --> B[GET /auth]
-    B --> C[AuthController]
-    C --> D[AuthService]
-    D --> E[Database]
+sequenceDiagram
+    participant Client
+    participant Server
+    participant Database
 
-    F[Client] --> G[POST /auth/register]
-    G --> C
-    C --> D
-    D --> E
+    Client->>Server: GET /auth
+    Server->>Server: Verifikasi token autentikasi
+    alt Token valid
+        Server-->>Client: Response 200 OK dengan informasi pengguna
+    else Token tidak valid
+        Server-->>Client: Response 401 Unauthorized
+    end
 
-    H[Client] --> I[POST /auth/login]
-    I --> C
-    C --> D
-    D --> E
+    Client->>Server: POST /auth/register
+    Server->>Server: Validasi data menggunakan register-user.dto.ts
+    Server->>Database: Cek apakah email/username sudah terdaftar
+    alt Data valid dan belum terdaftar
+        Server->>Database: Buat entitas pengguna baru
+        Database-->>Server: Data pengguna berhasil disimpan
+        Server-->>Client: Response 201 Created dengan data pengguna
+    else Data tidak valid atau sudah terdaftar
+        Server-->>Client: Response 400 Bad Request
+    end
+
+    Client->>Server: POST /auth/login
+    Server->>Server: Validasi data menggunakan login-user.dto.ts
+    Server->>Database: Cari pengguna berdasarkan email/username
+    alt Pengguna ditemukan dan password valid
+        Server->>Server: Buat token akses (JWT)
+        Server-->>Client: Response 200 OK dengan token akses
+    else Pengguna tidak ditemukan atau password tidak valid
+        Server-->>Client: Response 401 Unauthorized
+    end
 ```
 ## 6. Penjelasan POST Profile/Upload, POST Mahasiswa/Upload by NIM, GET Mahasiswa/Foto by NIM
 - **POST /profile/upload**: Endpoint ini digunakan untuk mengupload foto profil user. File yang diupload akan diproses dan disimpan di database atau sistem penyimpanan.
