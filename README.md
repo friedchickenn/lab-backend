@@ -1,8 +1,27 @@
 # NestJS Project 
 
-## 1. Penjelasan Singkat
+## 1. Penjelasan Singkat tentang Aplikasi
 
-Repositori ini merupakan aplikasi backend yang dibangun menggunakan framework NestJS. Aplikasi ini memiliki beberapa fitur utama, yaitu manajemen data mahasiswa, autentikasi, manajemen profil, dan chat real-time menggunakan WebSocket. Struktur repositori ini diorganisir berdasarkan fitur-fitur yang ada, dengan setiap fitur memiliki modul, controller, dan service tersendiri.
+Aplikasi ini adalah sebuah sistem manajemen data mahasiswa dan fitur chat real-time yang dibangun menggunakan NestJS, sebuah framework Node.js yang powerful dan modular. Aplikasi ini dirancang untuk mengelola data mahasiswa, mengunggah file, melakukan autentikasi pengguna, serta menyediakan fitur chat menggunakan WebSocket untuk komunikasi real-time.
+### Fitur Utama:
+1. **Manajemen Data Mahasiswa**:
+- Menambahkan, mengupdate, menghapus, dan mencari data mahasiswa berdasarkan NIM atau nama.
+- Mengunggah dan mengambil foto mahasiswa.
+2. Autentikasi dan Profil Pengguna:
+- Registrasi dan login pengguna.
+- Mengunggah foto profil dan mengelola data profil.
+3. Chat Real-Time:
+- Komunikasi real-time antar pengguna menggunakan WebSocket.
+- Broadcast pesan ke semua pengguna yang terhubung.
+4. Manajemen File:
+- Mengunggah dan menyimpan file (seperti foto profil atau foto mahasiswa) ke folder uploads/.
+5. Pencarian Data:
+- Mencari data mahasiswa atau profil berdasarkan kriteria tertentu (misalnya, nama atau NIM).
+### Teknologi yang Digunakan:
+- **Backend**: NestJS, Prisma ORM, WebSocket.
+- **Database**: Database relasional (misalnya, PostgreSQL, MySQL) untuk menyimpan data mahasiswa, pengguna, dan file.
+- **File Storage**: Folder uploads/ untuk menyimpan file yang diunggah.
+- **Autentikasi**: JWT (JSON Web Token) untuk mengamankan endpoint.
 
 ### Struktur Direktori:
 ```
