@@ -81,11 +81,9 @@ Aplikasi akan berjalan pada http://localhost:3000.
 - **Endpoint**: /mahasiswa
 - **Method**: POST
 - **Fungsi**: Untuk menambahkan data mahasiswa baru ke dalam database.
-- **Proses**:
--- Client mengirimkan request POST ke endpoint /mahasiswa dengan payload berupa data mahasiswa (misalnya: nama, nim, jenis kelamin, jurusan).
--- Server menerima request dan memvalidasi data menggunakan DTO (create-mahasiswa.dto.ts).
--- Jika valid, data mahasiswa akan disimpan ke dalam database menggunakan Prisma ORM.
--- Server mengembalikan response berupa data mahasiswa yang baru saja dibuat beserta status code 201 Created.
+- **Proses**:- Client mengirimkan request POST ke endpoint /mahasiswa dengan payload berupa data mahasiswa (misalnya: nama, nim, jenis kelamin, jurusan).
+- Server menerima request dan memvalidasi data menggunakan DTO (create-mahasiswa.dto.ts).
+- Jika valid, data mahasiswa akan disimpan ke dalam database menggunakan Prisma ORM.Server mengembalikan response berupa data mahasiswa yang baru saja dibuat beserta status code 201 Created.
 
 ### 2. **GET Mahasiswa**
 - **Endpoint**: /mahasiswa 
