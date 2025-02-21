@@ -78,28 +78,25 @@ Aplikasi akan berjalan pada http://localhost:3000.
 
 ## 3. Penjelasan POST dan GET Mahasiswa
 ### 1. **POST Mahasiswa**
-```
-**Endpoint**: /mahasiswa
-**Method**: POST
-**Fungsi**: Untuk menambahkan data mahasiswa baru ke dalam database.
-**Proses**:
-- Client mengirimkan request POST ke endpoint /mahasiswa dengan payload berupa data mahasiswa (misalnya: nama, nim, jenis kelamin, jurusan).
-- Server menerima request dan memvalidasi data menggunakan DTO (create-mahasiswa.dto.ts).
-- Jika valid, data mahasiswa akan disimpan ke dalam database menggunakan Prisma ORM.
-- Server mengembalikan response berupa data mahasiswa yang baru saja dibuat beserta status code 201 Created.
-```
+- **Endpoint**: /mahasiswa
+- **Method**: POST
+- **Fungsi**: Untuk menambahkan data mahasiswa baru ke dalam database.
+- **Proses**:
+-- Client mengirimkan request POST ke endpoint /mahasiswa dengan payload berupa data mahasiswa (misalnya: nama, nim, jenis kelamin, jurusan).
+-- Server menerima request dan memvalidasi data menggunakan DTO (create-mahasiswa.dto.ts).
+-- Jika valid, data mahasiswa akan disimpan ke dalam database menggunakan Prisma ORM.
+-- Server mengembalikan response berupa data mahasiswa yang baru saja dibuat beserta status code 201 Created.
+
 ### 2. **GET Mahasiswa**
-```
-**Endpoint**: /mahasiswa 
-**Method**: GET
-**Fungsi**: Untuk mengambil data mahasiswa, baik semua data mahasiswa atau data mahasiswa tertentu berdasarkan ID.
-**Proses**:
-- Client mengirimkan request GET ke endpoint /mahasiswa untuk mengambil semua data mahasiswa atau /mahasiswa/:id untuk mengambil data mahasiswa tertentu.
-- Server menerima request dan memprosesnya.
-- Jika endpoint adalah /mahasiswa, server akan mengambil semua data mahasiswa dari database.
-- Jika endpoint adalah /mahasiswa/:id, server akan mengambil data mahasiswa berdasarkan ID yang diberikan.
-- Server mengembalikan response berupa data mahasiswa yang diminta beserta status code 200 OK.
-```
+- **Endpoint**: /mahasiswa 
+- **Method**: GET
+- **Fungsi**: Untuk mengambil data mahasiswa, baik semua data mahasiswa atau data mahasiswa tertentu berdasarkan ID.
+- **Proses**:
+-- Client mengirimkan request GET ke endpoint /mahasiswa untuk mengambil semua data mahasiswa atau /mahasiswa/:id untuk mengambil data mahasiswa tertentu.
+-- Server menerima request dan memprosesnya.
+-- Jika endpoint adalah /mahasiswa, server akan mengambil semua data mahasiswa dari database.
+-- Jika endpoint adalah /mahasiswa/:id, server akan mengambil data mahasiswa berdasarkan ID yang diberikan.
+-- Server mengembalikan response berupa data mahasiswa yang diminta beserta status code 200 OK.
 **Diagram Alur POST dan GET Mahasiswa**
 Berikut adalah diagram alur untuk proses POST dan GET Mahasiswa
 ```mermaid
