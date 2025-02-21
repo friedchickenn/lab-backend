@@ -77,20 +77,49 @@ Untuk menjalankan aplikasi ini, ikuti langkah-langkah berikut:
 Aplikasi akan berjalan pada http://localhost:3000.
 
 ## 3. Penjelasan POST dan GET Mahasiswa
-- **POST /mahasiswa**: Endpoint ini digunakan untuk menambahkan data mahasiswa baru ke dalam database. Data yang dikirim oleh client akan diproses oleh MahasiswaController, kemudian diteruskan ke MahasiswaService untuk validasi dan penyimpanan ke database.
-- **GET /mahasiswa**: Endpoint ini digunakan untuk mengambil semua data mahasiswa yang tersimpan di database. Permintaan dari client akan diproses oleh MahasiswaController dan MahasiswaService sebelum mengembalikan data ke client.
-**Diagram Alur**:
-```mermaid
-flowchart TD
-    A[Client] --> B[POST /mahasiswa]
-    B --> C[MahasiswaController]
-    C --> D[MahasiswaService]
-    D --> E[Database]
+1. POST Mahasiswa
+Endpoint: /mahasiswa
+Method: POST
+Fungsi: Untuk menambahkan data mahasiswa baru ke dalam database.
+Proses:
+- Client mengirimkan request POST ke endpoint /mahasiswa dengan payload berupa data mahasiswa (misalnya: nama, nim, jenis kelamin, jurusan).
+- Server menerima request dan memvalidasi data menggunakan DTO (create-mahasiswa.dto.ts).
+- Jika valid, data mahasiswa akan disimpan ke dalam database menggunakan Prisma ORM.
+- Server mengembalikan response berupa data mahasiswa yang baru saja dibuat beserta status code 201 Created.
+2. GET Mahasiswa
+Endpoint: /mahasiswa atau /mahasiswa/:id
+Method: GET
+Fungsi: Untuk mengambil data mahasiswa, baik semua data mahasiswa atau data mahasiswa tertentu berdasarkan ID.
+Proses:
+- Client mengirimkan request GET ke endpoint /mahasiswa untuk mengambil semua data mahasiswa atau /mahasiswa/:id untuk mengambil data mahasiswa tertentu.
+- Server menerima request dan memprosesnya.
+- Jika endpoint adalah /mahasiswa, server akan mengambil semua data mahasiswa dari database.
+- Jika endpoint adalah /mahasiswa/:id, server akan mengambil data mahasiswa berdasarkan ID yang diberikan.
+- Server mengembalikan response berupa data mahasiswa yang diminta beserta status code 200 OK.
 
-    F[Client] --> G[GET /mahasiswa]
-    G --> C
-    C --> D
-    D --> E
+**Diagram Alur POST dan GET Mahasiswa**
+Berikut adalah diagram alur untuk proses POST dan GET Mahasiswa
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+    participant Database
+
+    Client->>Server: POST /mahasiswa
+    Server->>Server: Validasi data menggunakan create-mahasiswa.dto.ts
+    Server->>Database: Simpan data mahasiswa
+    Database-->>Server: Data mahasiswa berhasil disimpan
+    Server-->>Client: Response 201 Created dengan data mahasiswa
+
+    Client->>Server: GET /mahasiswa
+    Server->>Database: Ambil semua data mahasiswa
+    Database-->>Server: Data mahasiswa
+    Server-->>Client: Response 200 OK dengan data mahasiswa
+
+    Client->>Server: GET /mahasiswa/:id
+    Server->>Database: Ambil data mahasiswa berdasarkan ID
+    Database-->>Server: Data mahasiswa
+    Server-->>Client: Response 200 OK dengan data mahasiswa
 ```
 ## 4. Penjelasan GET, PUT, DELETE Mahasiswa by NIM
 - **GET /mahasiswa/:nim**: Endpoint ini digunakan untuk mengambil data mahasiswa berdasarkan NIM. NIM dikirim sebagai parameter dalam URL, dan data yang sesuai akan dicari di database.
