@@ -77,7 +77,7 @@ Untuk menjalankan aplikasi ini, ikuti langkah-langkah berikut:
 Aplikasi akan berjalan pada http://localhost:3000.
 
 ## 3. Penjelasan POST dan GET Mahasiswa
-1. **POST Mahasiswa**
+### 1. **POST Mahasiswa**
 **Endpoint**: /mahasiswa
 **Method**: POST
 **Fungsi**: Untuk menambahkan data mahasiswa baru ke dalam database.
@@ -86,7 +86,7 @@ Aplikasi akan berjalan pada http://localhost:3000.
 - Server menerima request dan memvalidasi data menggunakan DTO (create-mahasiswa.dto.ts).
 - Jika valid, data mahasiswa akan disimpan ke dalam database menggunakan Prisma ORM.
 - Server mengembalikan response berupa data mahasiswa yang baru saja dibuat beserta status code 201 Created.
-2. **GET Mahasiswa**
+### 2. **GET Mahasiswa**
 **Endpoint**: /mahasiswa 
 **Method**: GET
 **Fungsi**: Untuk mengambil data mahasiswa, baik semua data mahasiswa atau data mahasiswa tertentu berdasarkan ID.
@@ -117,7 +117,7 @@ sequenceDiagram
     Server-->>Client: Response 200 OK dengan data mahasiswa
 ```
 ## 4. Penjelasan GET, PUT, DELETE Mahasiswa by NIM
-1. **GET Mahasiswa by NIM**
+### 1. **GET Mahasiswa by NIM**
 **Endpoint**: /mahasiswa/:nim
 **Method**: GET
 **Fungsi**: Untuk mengambil data mahasiswa tertentu berdasarkan NIM (Nomor Induk Mahasiswa).
@@ -127,7 +127,7 @@ sequenceDiagram
 - Server mencari data mahasiswa di database berdasarkan NIM yang diberikan.
 - Jika data ditemukan, server mengembalikan response berupa data mahasiswa tersebut dengan status code 200 OK.
 - Jika data tidak ditemukan, server mengembalikan response dengan status code 404 Not Found.
-2. **PUT Mahasiswa by NIM**
+### 2. **PUT Mahasiswa by NIM**
 **Endpoint**: /mahasiswa/:nim
 **Method**: PUT
 **Fungsi**: Untuk memperbarui data mahasiswa tertentu berdasarkan NIM.
@@ -138,7 +138,7 @@ sequenceDiagram
 - Jika data ditemukan, server memperbarui data mahasiswa tersebut dengan data baru.
 - Server mengembalikan response berupa data mahasiswa yang telah diperbarui dengan status code 200 OK.
 - Jika data tidak ditemukan, server mengembalikan response dengan status code 404 Not Found.
-3. **DELETE Mahasiswa by NIM**
+### 3. **DELETE Mahasiswa by NIM**
 **Endpoint**: /mahasiswa/:nim
 **Method**: DELETE
 **Fungsi**: Untuk menghapus data mahasiswa tertentu berdasarkan NIM.
@@ -188,7 +188,7 @@ sequenceDiagram
     end
 ```
 ## 5. Penjelasan GET Auth, POST Register, dan POST Login
-1. **GET Auth**
+### 1. **GET Auth**
 **Endpoint**: /auth
 **Method**: GET
 **Fungsi**:Untuk memverifikasi status autentikasi pengguna (misalnya, mengecek apakah pengguna sudah login atau belum).
@@ -197,7 +197,7 @@ sequenceDiagram
 - Server menerima request dan memverifikasi token autentikasi menggunakan auth.guard.ts.
 - Jika token valid, server mengembalikan response berupa informasi pengguna yang terautentikasi dengan status code 200 OK.
 - Jika token tidak valid atau tidak ada, server mengembalikan response dengan status code 401 Unauthorized.
-2. **POST Register**
+### 2. **POST Register**
 **Endpoint**: /auth/register
 **Method**: POST
 **Fungsi**: Untuk mendaftarkan pengguna baru ke dalam sistem.
@@ -208,7 +208,7 @@ sequenceDiagram
 - Jika belum terdaftar, server membuat entitas pengguna baru dan menyimpannya ke database menggunakan Prisma ORM.
 - Server mengembalikan response berupa data pengguna yang baru saja dibuat beserta status code 201 Created.
 - Jika username sudah terdaftar, server mengembalikan response dengan status code 400 Bad Request.
-3. **POST Login**
+### 3. **POST Login**
 **Endpoint**: /auth/login
 **Method**: POST
 **Fungsi**: ntuk mengautentikasi pengguna dan memberikan token akses (access token).
