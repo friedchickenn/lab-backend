@@ -10,10 +10,6 @@ Repositori ini merupakan aplikasi backend yang dibangun menggunakan framework Ne
 ├── 📂node_modules/         # Direktori dependensi Node.js
 ├── 📂prisma/               # Konfigurasi Prisma ORM
 │   ├── prisma.schema      # Skema Prisma untuk database
-├── 📂public/               # Direktori untuk file statis
-│   ├── app.js          # File JavaScript untuk frontend
-│   ├── index.html      # Halaman utama aplikasi
-│   ├── styles.css      # Gaya tampilan aplikasi
 ├── 📂src/                  # Direktori utama kode sumber
 │   ├── 📂chat/             # Modul chat dengan WebSocket
 │   |   |-- chat.gateaway.spec.ts  # Unit test untuk chat gateway
@@ -23,7 +19,9 @@ Repositori ini merupakan aplikasi backend yang dibangun menggunakan framework Ne
 │   |   |-- chat.service.ts        # Service untuk fitur chat
 │   ├── 📂dto/              # Data Transfer Objects (DTOs)
 │   |   |-- create-mahasiswa.dto.ts  # DTO untuk mahasiswa
+│   |   |-- update-mahasiswa.dto.ts  # DTO untuk mahasiswa
 │   |   |-- register-user.dto.ts      # DTO untuk registrasi pengguna
+│   |   |-- login-user.dto.ts      # DTO untuk login pengguna
 │   ├── 📂entity/           # Entity untuk database
 │   |   |-- user.entity.ts  # Definisi entitas pengguna
 │   ├── 📂mahasiswa-profile/ # Modul untuk profil mahasiswa
