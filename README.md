@@ -24,12 +24,6 @@ Repositori ini merupakan aplikasi backend yang dibangun menggunakan framework Ne
 │   |   |-- login-user.dto.ts      # DTO untuk login pengguna
 │   ├── 📂entity/           # Entity untuk database
 │   |   |-- user.entity.ts  # Definisi entitas pengguna
-│   ├── 📂mahasiswa-profile/ # Modul untuk profil mahasiswa
-│   |   |-- mahasiswa-profile.controller.spec.ts  # Unit test controller profil mahasiswa
-│   |   |-- mahasiswa-profile.controller.ts       # Controller profil mahasiswa
-│   |   |-- mahasiswa-profile.module.ts          # Modul profil mahasiswa
-│   |   |-- mahasiswa-profile.service.spec.ts    # Unit test service profil mahasiswa
-│   |   |-- mahasiswa-profile.service.ts         # Service untuk profil mahasiswa
 │   ├── 📂profile/            # Modul profil umum
 │   |   |-- profile.controller.spec.ts  # Unit test controller profil
 │   |   |-- profile.controller.ts       # Controller profil
