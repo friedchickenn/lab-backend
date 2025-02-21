@@ -5,24 +5,58 @@
 Repositori ini merupakan aplikasi backend yang dibangun menggunakan framework NestJS. Aplikasi ini memiliki beberapa fitur utama, yaitu manajemen data mahasiswa, autentikasi, manajemen profil, dan chat real-time menggunakan WebSocket. Struktur repositori ini diorganisir berdasarkan fitur-fitur yang ada, dengan setiap fitur memiliki modul, controller, dan service tersendiri.
 
 ### Struktur Direktori:
-- *src/main.ts*: File entry point aplikasi NestJS.
-- *src/app.module.ts*: Modul utama aplikasi.
-- *src/app.controller.ts*: Controller utama aplikasi.
-- *src/app.service.ts*: Service utama aplikasi.
-- *src/mahasiswa/*: Folder untuk fitur mahasiswa.
-  - mahasiswa.controller.ts: Controller untuk fitur mahasiswa.
-  - mahasiswa.service.ts: Service untuk fitur mahasiswa.
-- *src/auth/*: Folder untuk fitur autentikasi.
-  - auth.controller.ts: Controller untuk fitur autentikasi.
-  - auth.service.ts: Service untuk fitur autentikasi.
-- *src/profile/*: Folder untuk fitur profil.
-  - profile.controller.ts: Controller untuk fitur profil.
-  - profile.service.ts: Service untuk fitur profil.
-- *src/chat/*: Folder untuk fitur chat.
-  - chat.gateway.ts: Gateway untuk fitur chat menggunakan WebSocket.
-- *src/prisma.ts*: File konfigurasi Prisma untuk menghubungkan ke database.
-- *prisma/schema.prisma*: Skema Prisma untuk mendefinisikan model dan hubungan database.
-  
+📦 latihan-nest/
+├── 📂node_modules/         # Direktori dependensi Node.js
+├── 📂prisma/               # Konfigurasi Prisma ORM
+│   ├── prisma.schema      # Skema Prisma untuk database
+├── 📂public/               # Direktori untuk file statis
+│   ├── app.js          # File JavaScript untuk frontend
+│   ├── index.html      # Halaman utama aplikasi
+│   ├── styles.css      # Gaya tampilan aplikasi
+├── 📂src/                  # Direktori utama kode sumber
+│   ├── 📂chat/             # Modul chat dengan WebSocket
+│   |   |-- chat.gateaway.spec.ts  # Unit test untuk chat gateway
+│   |   |-- chat.gateaway.ts       # Implementasi WebSocket gateway
+│   |   |-- chat.module.ts         # Modul chat
+│   |   |-- chat.service.spec.ts   # Unit test untuk chat service
+│   |   |-- chat.service.ts        # Service untuk fitur chat
+│   ├── 📂dto/              # Data Transfer Objects (DTOs)
+│   |   |-- create-mahasiswa.dto.ts  # DTO untuk mahasiswa
+│   |   |-- register-user.dto.ts      # DTO untuk registrasi pengguna
+│   ├── 📂entity/           # Entity untuk database
+│   |   |-- user.entity.ts  # Definisi entitas pengguna
+│   ├── 📂mahasiswa-profile/ # Modul untuk profil mahasiswa
+│   |   |-- mahasiswa-profile.controller.spec.ts  # Unit test controller profil mahasiswa
+│   |   |-- mahasiswa-profile.controller.ts       # Controller profil mahasiswa
+│   |   |-- mahasiswa-profile.module.ts          # Modul profil mahasiswa
+│   |   |-- mahasiswa-profile.service.spec.ts    # Unit test service profil mahasiswa
+│   |   |-- mahasiswa-profile.service.ts         # Service untuk profil mahasiswa
+│   ├── 📂profile/            # Modul profil umum
+│   |   |-- profile.controller.spec.ts  # Unit test controller profil
+│   |   |-- profile.controller.ts       # Controller profil
+│   |   |-- profile.module.ts           # Modul profil
+│   |   |-- profile.service.spec.ts     # Unit test service profil
+│   |   |-- profile.service.ts          # Service untuk profil
+│   |-- app.controller.spec.ts  # Unit test controller utama
+│   |-- app.controller.ts       # Controller utama aplikasi
+│   |-- app.module.ts           # Modul utama aplikasi
+│   |-- app.service.ts          # Service utama aplikasi
+│   |-- auth.guard.ts           # Middleware untuk autentikasi
+│   |-- auth.module.ts          # Modul autentikasi
+│   |-- main.ts              # File utama untuk menjalankan aplikasi
+│   |-- prisma.ts            # Konfigurasi koneksi Prisma
+│   |-- user.decorator.ts    # Custom decorator untuk user
+├── 📂test/                # Direktori untuk unit testing
+├── 📂uploads/             # Direktori untuk penyimpanan file yang diunggah
+├── .env                   # File konfigurasi environment
+├── .gitignore             # File untuk mengabaikan file yang tidak perlu dalam Git
+├── .prettierrc            # Konfigurasi Prettier untuk code formatting
+├── nest-cli.json          # Konfigurasi CLI NestJS
+├── package-lock.json      # File lock dependencies
+├── package.json           # File konfigurasi npm
+├── README.md              # Dokumentasi proyek
+├── tsconfig.build.json    # Konfigurasi TypeScript untuk build
+├── tsconfig.json          # Konfigurasi utama TypeScript
 ## 2. Cara Menjalankan Aplikasi
 
 Untuk menjalankan aplikasi ini, ikuti langkah-langkah berikut:
