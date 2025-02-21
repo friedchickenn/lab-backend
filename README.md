@@ -342,7 +342,7 @@ sequenceDiagram
 - **Method**: GET
 - **Fungsi**:Untuk mencari data mahasiswa berdasarkan nama atau bagian dari nama.
 - **Proses**:
-  1.Client mengirimkan request GET ke endpoint /mahasiswa/search dengan menyertakan query parameter nama (misalnya, ?nama=Erika yanti).
+  1. Client mengirimkan request GET ke endpoint /mahasiswa/search dengan menyertakan query parameter nama (misalnya, ?nama=Erika yanti).
   2. Server menerima request dan memproses query parameter nama.
   3. Server mencari data mahasiswa di database berdasarkan nama atau bagian dari nama yang diberikan (misalnya, menggunakan operator LIKE di SQL).
   4. Jika data ditemukan, server mengembalikan response berupa daftar mahasiswa yang sesuai dengan kriteria pencarian beserta status code 200 OK.
